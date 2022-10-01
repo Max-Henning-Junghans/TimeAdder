@@ -24,7 +24,6 @@ public class Main {
 				timeCount.addToTime(Time.subtractTimes(firstTime, secondTime));
 				System.out.println(timeCount);
 			} catch (NumberFormatException | ArrayIndexOutOfBoundsException ignored) {
-			} finally {
 				System.out.println("Wrong format. Please try again.");
 			}
 		}
