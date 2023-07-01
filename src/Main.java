@@ -12,11 +12,10 @@ public class Main {
 		while (!finished) {
 			input = scanner.nextLine();
 			switch (input) {
-				case "--stop": {
+				case "--stop" -> {
 					finished = true;
-					break;
 				}
-				case "--help": {
+				case "--help" -> {
 					System.out.println("This program has the following commands.");
 					System.out.println("--help: Show all commands.");
 					System.out.println("--stop: Stop the program.");
@@ -28,19 +27,15 @@ public class Main {
 					System.out.println("00:00 11:45");
 					System.out.println("22:50 02:21");
 					System.out.println("The program cannot count single durations longer than 24 hours.");
-					break;
 				}
-				case "--reset": {
+				case "--reset" -> {
 					timeCount = new Time(0, 0);
-					break;
 				}
-				case "--show": {
+				case "--show" -> {
 					System.out.println(timeCount);
-					break;
 				}
-				default: {
+				default -> {
 					processTimeInput(input, timeCount);
-					break;
 				}
 			}
 		}
