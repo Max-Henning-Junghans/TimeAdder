@@ -1,18 +1,21 @@
-import java.util.*
-
 object Main {
-    private val scanner = Scanner(System.`in`)
+    /**
+     * The main function is the entry point of the program.
+     */
     @JvmStatic
     fun main(args: Array<String>) {
-        runProgram()
+        run()
     }
 
-    private fun runProgram() {
+    /**
+     * This function handles the running of the program.
+     */
+    private fun run() {
         var input: String
         var finished = false
         var timeCount = Time(0, 0)
         while (!finished) {
-            input = scanner.nextLine()
+            input = readln()
             when (input) {
                 "--stop" -> finished = true
                 "--reset" -> timeCount = Time(0, 0)
@@ -35,6 +38,9 @@ object Main {
         }
     }
 
+    /**
+     * This function adds the time difference between the two values in the input String to the timeCount.
+     */
     private fun processTimeInput(input: String, timeCount: Time) {
         try {
             val times = input.split(" ")
@@ -56,6 +62,10 @@ object Main {
         }
     }
 
+    /**
+     * This little utility function checks, whether a list has exactly two inputs.
+     * If this is not the case, an exception is thrown.
+     */
     private fun checkIfListSizeEqualsTwo(list: List<String>) {
         if (list.size != 2) {
             throw Exception("Wrong number of parameters! 2 Parameters are expected.")
