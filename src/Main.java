@@ -5,6 +5,10 @@ public class Main {
 	private static final Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
+		runProgram();
+	}
+
+	private static void runProgram() {
 		String input;
 		boolean finished = false;
 		Time timeCount = new Time(0, 0);
@@ -12,9 +16,9 @@ public class Main {
 		while (!finished) {
 			input = scanner.nextLine();
 			switch (input) {
-				case "--stop" -> {
-					finished = true;
-				}
+				case "--stop" -> finished = true;
+				case "--reset" -> timeCount = new Time(0, 0);
+				case "--show" -> System.out.println(timeCount);
 				case "--help" -> {
 					System.out.println("This program has the following commands.");
 					System.out.println("--help: Show all commands.");
@@ -28,15 +32,7 @@ public class Main {
 					System.out.println("22:50 02:21");
 					System.out.println("The program cannot count single durations longer than 24 hours.");
 				}
-				case "--reset" -> {
-					timeCount = new Time(0, 0);
-				}
-				case "--show" -> {
-					System.out.println(timeCount);
-				}
-				default -> {
-					processTimeInput(input, timeCount);
-				}
+				default -> processTimeInput(input, timeCount);
 			}
 		}
 	}
