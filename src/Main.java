@@ -21,6 +21,7 @@ public class Main {
 					System.out.println("--help: Show all commands.");
 					System.out.println("--stop: Stop the program.");
 					System.out.println("--reset: Reset the counter to 0.");
+					System.out.println("--show: Show the current value.");
 					System.out.println("Inputs for this program have the following format.");
 					System.out.println("<Hour of the first time>:<Minute of the first time> <Hour of the second time>:<Minute of the second time>");
 					System.out.println("The times follow the 24-hour format. Here are some examples.");
@@ -31,6 +32,11 @@ public class Main {
 				}
 				case "--reset": {
 					timeCount = new Time(0, 0);
+					break;
+				}
+				case "--show": {
+					System.out.println(timeCount);
+					break;
 				}
 				default: {
 					processTimeInput(input, timeCount);
