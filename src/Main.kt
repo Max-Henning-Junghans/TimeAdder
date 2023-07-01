@@ -30,7 +30,6 @@ object Main {
                     println("22:50 02:21")
                     println("The program cannot count single durations longer than 24 hours.")
                 }
-
                 else -> processTimeInput(input, timeCount)
             }
         }
@@ -39,18 +38,27 @@ object Main {
     private fun processTimeInput(input: String, timeCount: Time) {
         try {
             val times = input.split(" ")
+            checkIfListSizeEqualsTwo(times) // Error-handling
             val firstTimeString = times[0].split(":")
             val secondTimeString = times[1].split(":")
+            checkIfListSizeEqualsTwo(firstTimeString) // Error-handling
+            checkIfListSizeEqualsTwo(secondTimeString) // Error-handling
             val firstTime = Time(Time.hourStringToInt(firstTimeString[0]), Time.minuteStringToInt(firstTimeString[1]))
             val secondTime = Time(Time.hourStringToInt(secondTimeString[0]), Time.minuteStringToInt(secondTimeString[1]))
             timeCount.addToTime(Time.subtractTimes(firstTime, secondTime))
             println(timeCount)
-        } catch (ignored: NumberFormatException) {
-            println("Wrong format. Please try again.")
-        } catch (ignored: ArrayIndexOutOfBoundsException) {
+        } catch (exception: NumberFormatException) {
             println("Wrong format. Please try again.")
         } catch (exception: TimeOutOfBoundsException) {
-            println("Wrong format! The hour has to be between 0 and 24; the minute has to be between 0 and 60.")
+            println("Wrong format!" + exception.message)
+        } catch (exception: Exception) {
+            println(exception.message)
+        }
+    }
+
+    private fun checkIfListSizeEqualsTwo(list: List<String>) {
+        if (list.size != 2) {
+            throw Exception("Wrong number of parameters! 2 Parameters are expected.")
         }
     }
 }
