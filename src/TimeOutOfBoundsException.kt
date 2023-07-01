@@ -1,0 +1,1 @@
+class TimeOutOfBoundsException(message: String): Exception(message)

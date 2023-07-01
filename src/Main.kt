@@ -38,17 +38,19 @@ object Main {
 
     private fun processTimeInput(input: String, timeCount: Time) {
         try {
-            val times = input.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-            val firstTimeString = times[0].split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-            val secondTimeString = times[1].split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-            val firstTime = Time(firstTimeString[0].toInt(), firstTimeString[1].toInt())
-            val secondTime = Time(secondTimeString[0].toInt(), secondTimeString[1].toInt())
-            timeCount.addToTime(Time.Companion.subtractTimes(firstTime, secondTime))
+            val times = input.split(" ")
+            val firstTimeString = times[0].split(":")
+            val secondTimeString = times[1].split(":")
+            val firstTime = Time(Time.hourStringToInt(firstTimeString[0]), Time.minuteStringToInt(firstTimeString[1]))
+            val secondTime = Time(Time.hourStringToInt(secondTimeString[0]), Time.minuteStringToInt(secondTimeString[1]))
+            timeCount.addToTime(Time.subtractTimes(firstTime, secondTime))
             println(timeCount)
         } catch (ignored: NumberFormatException) {
             println("Wrong format. Please try again.")
         } catch (ignored: ArrayIndexOutOfBoundsException) {
             println("Wrong format. Please try again.")
+        } catch (exception: TimeOutOfBoundsException) {
+            println("Wrong format! The hour has to be between 0 and 24; the minute has to be between 0 and 60.")
         }
     }
 }
